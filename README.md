@@ -1,7 +1,10 @@
 # tic-tac-toe
+
 ## Tech Used
 
 -HTML
+-CSS
+-Javascript
 
 Planning
 
