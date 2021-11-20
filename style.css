@@ -1,3 +1,123 @@
 title {
     color: blue;
 }
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: rgb(5, 71, 142);
+}
+
+.main {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    width: 100vw;
+    height: 100vw;
+    justify-items: center;
+    align-items: center;
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    background-color: rgb(5, 71, 142);
+    border: 2px solid rgb(249, 252, 251);
+    justify-content: center;
+    display: flex;
+    align-content: center;
+    cursor: pointer;
+}
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none;
+}
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+    border-right: none;
+}
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+    border-bottom: none;
+}
+
+.cell.x {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 140px;
+    color: rgb(210, 97, 127);
+    justify-content: center;
+    align-content: center;
+}
+.cell.o {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 140px;
+    color: rgb(173, 133, 203);
+    justify-content: center;
+    align-content: center;
+}
+.winning {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(7, 7, 7);
+    justify-content: center;
+    align-items: center;
+    color: rgb(248, 250, 248);
+    font-size: 3rem;
+    flex-direction: column;
+}
+.winning.alert {
+    display: flex;
+}
+
+#restartBtn {
+    font-size: 2rem;
+    color: green;
+    border: 1px solid green;
+    cursor: pointer;
+    padding: 0.3em;
+    border-radius: 1em;
+}
+#restartBtn:hover {
+    background-color: green;
+    color: white;
+    border-color: white;
+}
+#player1 {
+    font-size: 2rem;
+    color: rgb(210, 97, 127);
+    cursor: pointer;
+    padding: 1em;
+    border-radius: 2em;
+}
+#player1:hover {
+    background-color: rgb(210, 97, 127);
+    color: white;
+    border-color: white;
+}
+#player2 {
+    font-size: 2rem;
+    color: rgb(173, 133, 203);
+    cursor: pointer;
+    padding: 1em;
+    border-radius: 2em;
+}
+#player2:hover {
+    background-color: rgb(173, 133, 203);
+    color: white;
+    border-color: white;
+}
