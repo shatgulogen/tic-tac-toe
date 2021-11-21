@@ -5,26 +5,38 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
-        <script src="main.js" defer></script>
         <title>Tic-tac-toe</title>
     </head>
     <body>
         <div class="main" id="main">
-            <div class="cell x" input-cell></div>
-            <div class="cell o" input-cell></div>
-            <div class="cell" input-cell></div>
-            <div class="cell" input-cell></div>
-            <div class="cell" input-cell></div>
-            <div class="cell" input-cell></div>
-            <div class="cell" input-cell></div>
-            <div class="cell" input-cell></div>
-            <div class="cell" input-cell></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
+            <div class="cell" input-cell><span class="cellText"></span></div>
         </div>
+        <div class="gameInfo">
+            <h1>Welcome to Tic Tac Toe!</h1>
+            <div>
+                <span class="turnInfo">It is turn for X</span>
+            </div>
+
+            <div class="image">
+                <img src="win.gif" alt="" />
+            </div>
+        </div>
+
         <div class="winning" id="winningMessage">
             <div winning text></div>
+            <button id="shuffleBtn">Press me to see who gets to start!</button>
             <button id="restartBtn">Restart</button>
             <button id="player1">X</button>
             <button id="player2">O</button>
         </div>
+        <script src="main.js"></script>
     </body>
 </html>

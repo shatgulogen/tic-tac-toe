@@ -28,6 +28,15 @@ body {
     display: flex;
     align-content: center;
     cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 140px;
+    color: rgb(210, 97, 127);
+    justify-content: center;
+    align-content: center;
+}
+.cell:hover {
+    background-color: thistle;
 }
 .cell:nth-child(1),
 .cell:nth-child(2),
@@ -121,3 +130,14 @@ body {
     color: white;
     border-color: white;
 }
+.gameInfo {
+    text-align: center;
+    color: white;
+    margin-top: -1250px;
+    padding: 0 34px;
+}
+/*
+.image img {
+    display: none;
+}
+*/
