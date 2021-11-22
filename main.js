@@ -2,10 +2,11 @@ let clickTurn = new Audio('click.mp3');
 let gameOver = new Audio('gameover.mp3');
 let applause = new Audio('applause.mp3');
 let turn = 'X';
+let isGameOver = false;
 
 //Create function to change the turn
 //turn will return who gets to play next
-function turnChange() {
+function switchPlayer() {
     return turn === 'X' ? 'O' : 'X';
 }
 
@@ -38,13 +39,25 @@ function checkForWin() {
     ];
     //There are no a === b === c function in javascript
     // a===b && c===b && a !== ''
+    let scoreforX = 0;
+    let scoreforO = 0;
+    let scoreX = document.getElementById('scoreX');
+    let scoreO = document.getElementById('scoreO');
     winConditions.forEach((element) => {
         if (
             cellText[element[0]].innerText === cellText[element[1]].innerText &&
+            cellText[element[2]].innerText === cellText[element[1]].innerText &&
             cellText[element[0]].innerText !== ''
         ) {
             document.querySelector('.turnInfo').innerText =
                 cellText[element[0]].innerText + 'Won the Game!';
+            if (cellText[element[0]].innerText === 'X') {
+                scoreX.textContent = scoreforX++;
+            } else if (cellText[element[0]].innerText === 'O') {
+                scoreO.textContent = scoreforO++;
+            }
+            isGameOver = true;
+            document.querySelector('.image img').classList.add('winner');
         }
     });
 }
@@ -54,18 +67,72 @@ let allCells = document.getElementsByClassName('cell');
 
 Array.from(allCells).forEach((cell) => {
     let cellText = cell.querySelector('.cellText');
-    cell.addEventListener('click', function () {
+    cell.addEventListener('click', function (event) {
         if (cellText.innerText === '') {
             cellText.innerText = turn;
-            turn = turnChange();
+            turn = switchPlayer();
+            colorChange(event.target, turn);
             clickTurn.play();
             checkForWin();
-            document.getElementsByClassName('turnInfo')[0].innerText =
-                'It is turn for ' + turn;
+            if (!isGameOver) {
+                document.getElementsByClassName('turnInfo')[0].innerText =
+                    'It is turn for ' + turn;
+            }
+            determineWinner();
         }
     });
 });
 
-//Next, take into account the case when no body wins the game
+function colorChange(element, symbol) {
+    if (symbol === 'X') {
+        element.setAttribute('style', 'color: rgb(210, 97, 127)');
+    } else if (symbol === 'O') {
+        element.setAttribute('style', 'color: rgb(173, 133, 203)');
+    }
+}
+
+document.querySelectorAll('.cellText').addEventListener('click', function () {
+    if (document.querySelectorAll('.cellText').innerText === 'X') {
+        document
+            .querySelectorAll('.cellText')
+            .innerText.setAttribute('style', 'color: rgb(210, 97, 127)');
+    } else if (document.querySelectorAll('.cellText').innerText === 'O') {
+        document
+            .querySelectorAll('.cellText')
+            .innerText.setAttribute('style', 'color: rgb(173, 133, 203)');
+    }
+});
+
+//Check for draw
+function draw() {}
+
+//score board
+
+function determineWinner() {
+    if (scoreforO > scoreforX && scoreforX + scoreforO <= 10) {
+        console.log(`O wins!`);
+    } else if (scoreforX > scoreforO && scoreforX + scoreforO <= 10) {
+        console.log(`X wins!`);
+    } else if ((scoreforX = scoreforO)) {
+        console.log(`It's a tie!`);
+    }
+}
+determineWinner();
+/* 
+x o
+0 10
+1 9
+2 8
+3 7
+4 6
+5 5
+6 4
+7 3
+8 2 
+9 1
+10 0
+
+*/
+
 //add sound effect for case gameover and case winning
 //Write function for winning message page and make restart button responsive
