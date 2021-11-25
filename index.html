@@ -4,57 +4,85 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
         <title>Tic-tac-toe</title>
     </head>
     <body>
-        <div class="main" id="main">
-            <div class="cell" input-cell><span class="cellText"></span></div>
-            <div class="cell" input-cell><span class="cellText"></span></div>
-            <div class="cell" input-cell><span class="cellText"></span></div>
-            <div class="cell" input-cell><span class="cellText"></span></div>
-            <div class="cell" input-cell><span class="cellText"></span></div>
-            <div class="cell" input-cell><span class="cellText"></span></div>
-            <div class="cell" input-cell><span class="cellText"></span></div>
-            <div class="cell" input-cell><span class="cellText"></span></div>
-            <div class="cell" input-cell><span class="cellText"></span></div>
-        </div>
-        <div class="gameInfo">
-            <h1>Welcome to Tic Tac Toe!</h1>
-            <div>
-                <span class="turnInfo">It is turn for X</span>
+        <div class="container">
+            <div id="header" class=".item-a">
+                <h1>Welcome to Tic Tac Toe!</h1>
+            </div>
+            <div id="buttons" class=".item-b">
+                <ul>
+                    <li><button id="restartBtn">Restart</button></li>
+                    <li><button id="playAgain">Play Again</button></li>
+                    <li>
+                        <button id="go" onkeypress="go()">Go</button>
+                        <p id="countdown">03:00</p>
+                    </li>
+                </ul>
+            </div>
+            <div id="message" class=".item-c">
+                <span class="turnInfo">It is turn for X!</span>
             </div>
 
-            <div class="image">
-                <img src="win.gif" alt="" />
+            <div class=".item-d" id="score">
+                <div class="scores">
+                    <table>
+                        <caption>
+                            Score Board
+                        </caption>
+                        <tr>
+                            <th>Players</th>
+                            <th>Scores</th>
+                        </tr>
+                        <tr>
+                            <td>X</td>
+                            <td id="scoreX">0</td>
+                        </tr>
+                        <tr>
+                            <td>O</td>
+                            <td id="scoreO">0</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="scores">
-            <table>
-                <caption>
-                    Score Board
-                </caption>
-                <tr>
-                    <th>Players</th>
-                    <th>Scores</th>
-                </tr>
-                <tr>
-                    <td>X</td>
-                    <td id="scoreX">X</td>
-                </tr>
-                <tr>
-                    <td>O</td>
-                    <td id="scoreO">0</td>
-                </tr>
-            </table>
-        </div>
+            <div class=".item-e" id="main">
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                <div class="cell" input-cell>
+                    <span class="cellText"></span>
+                </div>
+                </div>
 
-        <div class="winning" id="winningMessage">
-            <div winning text></div>
-            <button id="shuffleBtn">Press me to start!</button>
-            <button id="restartBtn">Restart</button>
-            <button id="player1">X</button>
-            <button id="player2">O</button>
+                <div class=".item-f" id="sidebar">
+                    <div class="image">
+                        <img src="win.gif" alt="" />
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="main.js"></script>
     </body>
