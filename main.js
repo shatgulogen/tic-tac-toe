@@ -3,7 +3,7 @@ let gameOver = new Audio('gameover.mp3');
 let applause = new Audio('applause.mp3');
 let arr = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1];
 let n = arr.length;
-let turn = '';
+let turn = 'X';
 let isGameOver = false;
 let cellText = document.getElementsByClassName('cellText');
 let allCells = document.getElementsByClassName('cell');
@@ -47,6 +47,7 @@ let winConditions = [
 // a===b && c===b && a !== ''
 function checkForWin(event) {
     //console.log(currGameStatus);
+    console.log(event.target);
     currGameStatus.push(event.target.innerText);
     let scoreX = document.getElementById('scoreX');
     let scoreO = document.getElementById('scoreO');
@@ -60,6 +61,7 @@ function checkForWin(event) {
                 cellText[element[0]].innerText +
                 ' Wins the Game! Restart and Continue to the Next Round!';
             applause.play();
+            endGame();
             if (cellText[element[0]].innerText === 'X') {
                 scoreX.textContent = ++scoreforX;
             } else if (cellText[element[0]].innerText === 'O') {
@@ -70,28 +72,30 @@ function checkForWin(event) {
         }
     });
 }
+function clickHandler(event) {
+    let cellText = event.target.querySelector('.cellText');
+    if (cellText.innerText === '') {
+        console.log(turn);
+        cellText.innerText = turn;
+        turn = switchPlayer();
+        console.log(turn);
+        colorChange(event.target, turn);
+        clickTurn.play();
+        if (winConditions.length < 9 && !isGameOver) {
+            document.getElementsByClassName('turnInfo')[0].innerText =
+                'It is turn for ' + turn;
+        }
+        checkForWin(event);
+        isDraw();
+        determineWinner();
+    }
+}
 
 //Create logic for turns
 //The forEach() method executes a provided function once for each array element.
 //Array.prototype.forEach()
 Array.from(allCells).forEach((cell) => {
-    let cellText = cell.querySelector('.cellText');
-    cell.addEventListener('click', function (event) {
-        if (cellText.innerText === '') {
-            cellText.innerText = turn;
-            turn = switchPlayer();
-            console.log(turn);
-            colorChange(event.target, turn);
-            clickTurn.play();
-            if (winConditions.length < 9 && !isGameOver) {
-                document.getElementsByClassName('turnInfo')[0].innerText =
-                    'It is turn for ' + turn;
-            }
-            checkForWin(event);
-            isDraw();
-            determineWinner();
-        }
-    });
+    cell.addEventListener('click', clickHandler);
 });
 
 function colorChange(element, symbol) {
@@ -130,6 +134,7 @@ function isDraw() {
         document.querySelector('.turnInfo').innerText =
             "It's a draw! Restart and Continue to the Next Round!";
         gameOver.play();
+        endGame();
     }
 }
 
@@ -139,15 +144,18 @@ function determineWinner() {
         applause.play();
         document.querySelector('.turnInfo').innerText =
             'Final Round is Over! O Wins the Game!';
+        endGame();
     } else if (scoreforX > scoreforO && scoreforX + scoreforO >= 10) {
         applause.play();
         document.querySelector('.turnInfo').innerText =
             'Final Round is Over! X Wins the Game!';
+        endGame();
     } else if (scoreforX == scoreforO && scoreforO + scoreforX >= 10) {
         document.querySelector('.turnInfo').innerText =
             "Final Round is Over! It's a Tie!";
         isGameOver = true;
         gameOver.play();
+        endGame();
     }
 }
 
@@ -155,14 +163,14 @@ function determineWinner() {
 function restart() {
     currGameStatus = [];
     let cellTexts = document.querySelectorAll('.cellText');
+    isGameOver = false;
+    allCells.disabled = false;
+    document.getElementsByClassName('turnInfo')[0].innerText =
+        'It is turn for ' + turn;
+    document.querySelector('.image img').classList.remove('winner');
+    turn = 'X';
     Array.from(cellTexts).forEach((element) => {
         element.innerText = '';
-        turn = 'X';
-        isGameOver = false;
-        allCells.disabled = false;
-        document.getElementsByClassName('turnInfo')[0].innerText =
-            'It is turn for ' + turn;
-        document.querySelector('.image img').classList.remove('winner');
     });
     if (scoreforX == 10 || scoreforX == 10 || scoreforX == scoreforO) {
         let scoreforX = 0;
@@ -207,14 +215,14 @@ document.getElementById('go').addEventListener('click', function () {
     }
 });
 
-/*
 //end game/////////////////////////////////////////
+
 function endGame() {
-    document.getElementsByClassName('cell').forEach((cell) => {
-        document.getElementsByClassName('cell').disabled;
+    console.log(`endGame()`);
+    Array.from(allCells).forEach((cell) => {
+        cell.removeEventListener('click', clickHandler);
     });
 }
-*/
 
 //shuffle shuffle an array of Xs and Os
 
