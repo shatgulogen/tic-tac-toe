@@ -136,14 +136,14 @@ function determineWinner() {
     if (scoreforO > scoreforX && scoreforX + scoreforO >= 10) {
         applause.play();
         document.querySelector('.turnInfo').innerText =
-            'Final round is over! O wins the game!';
+            'Final Round is Over! O Wins the Game!';
     } else if (scoreforX > scoreforO && scoreforX + scoreforO >= 10) {
         applause.play();
         document.querySelector('.turnInfo').innerText =
-            'Final round is over! X wins the game!';
+            'Final Round is Over! X Wins the Game!';
     } else if (scoreforX == scoreforO && scoreforO + scoreforX >= 10) {
         document.querySelector('.turnInfo').innerText =
-            "Final round is over! It's a tie!";
+            "Final Round is Over! It's a Tie!";
         isGameOver = true;
         gameOver.play();
     }
