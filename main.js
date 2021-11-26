@@ -1,7 +1,9 @@
 let clickTurn = new Audio('click.mp3');
 let gameOver = new Audio('gameover.mp3');
 let applause = new Audio('applause.mp3');
-let turn = 'X';
+let arr = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1];
+let n = arr.length;
+let turn = '';
 let isGameOver = false;
 let cellText = document.getElementsByClassName('cellText');
 let allCells = document.getElementsByClassName('cell');
@@ -206,10 +208,47 @@ document.getElementById('go').addEventListener('click', function () {
 });
 
 /*
-//end game
+//end game/////////////////////////////////////////
 function endGame() {
     document.getElementsByClassName('cell').forEach((cell) => {
         document.getElementsByClassName('cell').disabled;
     });
 }
 */
+
+//shuffle shuffle an array of Xs and Os
+
+// A function to generate a random permutation of arr
+function shuffle(arr, n) {
+    // Start from the last element and swap one by one.
+    //i >0 because there is no need to run for the first element.
+    for (let i = n - 1; i > 0; i--) {
+        // Pick a random index from 0 to i inclusive
+        let j = Math.floor(Math.random() * (i + 1));
+        // Swap arr[i] with the element at random index
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    //console.log(arr);
+    ans = '';
+    for (let i = 0; i < n; i++) {
+        ans += arr[i] + ' ';
+    }
+    let number = ans[Math.floor(Math.random() * ans.length)];
+    //console.log(number);
+    if (number == 0) {
+        console.log('X');
+        turn = 'X';
+        document.getElementsByClassName('turnInfo')[0].innerText =
+            'It is turn for ' + turn;
+    } else if (number == 1) {
+        console.log('O');
+        turn = 'O';
+        document.getElementsByClassName('turnInfo')[0].innerText =
+            'It is turn for ' + turn;
+    }
+}
+
+shuffleButton = document.querySelector('.shuffle');
+shuffleButton.addEventListener('click', function () {
+    shuffle(arr, n);
+});

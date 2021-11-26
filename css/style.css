@@ -89,6 +89,18 @@ p {
     background-color: darkblue;
 }
 
+#shuffleBtn {
+    font-size: 1rem;
+    color: rgb(3, 3, 3);
+    border: 1px solid rgba(167, 162, 162, 0.253);
+    cursor: pointer;
+    padding: 0.3em;
+}
+#shuffle:hover {
+    background-color: rgb(10, 10, 10);
+    color: rgb(247, 242, 242);
+    border-color: white;
+}
 #playAgain,
 #restartBtn {
     display: inline-flex;
