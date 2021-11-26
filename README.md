@@ -18,7 +18,10 @@ Planning
     - Include web audio and API sounds.
     - Include message updates for players.
 
-**2. Add style to the contents** - Use CSS grid to create class item-a to item-f. - Place grid content into each class.
+**2. Add style to the contents by adding style.css**
+
+    - Use CSS grid to create class item-a to item-f to make the game webpage responsive.
+    - Place grid content into each class.
 
 **3. Make the logic to let the game become responsive by adding Javascript main.js**
 
