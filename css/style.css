@@ -121,6 +121,7 @@ p {
     cursor: pointer;
     padding: 0.3em;
 }
+
 #restartBtn:hover {
     background-color: rgb(10, 10, 10);
     color: rgb(247, 242, 242);
@@ -163,7 +164,7 @@ table {
 table,
 th,
 td {
-    border: 1px solid darkorange;
+    border: 1px solid rgb(202, 17, 17);
     border-collapse: collapse;
 }
 th,
@@ -185,7 +186,7 @@ td {
     grid-row-end: 5;
     text-align: center;
     display: grid;
-    background-color: rgba(245, 239, 239, 0.863);
+    background-color: rgba(243, 11, 11, 0.863);
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 10px;
@@ -199,9 +200,12 @@ td {
     font-size: 24px;
     width: 300px;
 }
+.cell {
+    background-color: white;
+}
 
 .cell:hover {
-    background-color: darkorange;
+    background-color: rgb(18, 2, 63);
 }
 .cell:nth-child(1),
 .cell:nth-child(2),

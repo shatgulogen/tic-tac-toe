@@ -55,7 +55,8 @@ function checkForWin(event) {
             cellText[element[0]].innerText !== ''
         ) {
             document.querySelector('.turnInfo').innerText =
-                cellText[element[0]].innerText + ' Wins the Game!';
+                cellText[element[0]].innerText +
+                ' Wins the Game! Restart and Continue to the Next Round!';
             applause.play();
             if (cellText[element[0]].innerText === 'X') {
                 scoreX.textContent = ++scoreforX;
@@ -69,6 +70,8 @@ function checkForWin(event) {
 }
 
 //Create logic for turns
+//The forEach() method executes a provided function once for each array element.
+//Array.prototype.forEach()
 Array.from(allCells).forEach((cell) => {
     let cellText = cell.querySelector('.cellText');
     cell.addEventListener('click', function (event) {
@@ -77,7 +80,6 @@ Array.from(allCells).forEach((cell) => {
             turn = switchPlayer();
             console.log(turn);
             colorChange(event.target, turn);
-
             clickTurn.play();
             if (winConditions.length < 9 && !isGameOver) {
                 document.getElementsByClassName('turnInfo')[0].innerText =
@@ -124,7 +126,8 @@ function isDraw() {
     console.log(currGameStatus.length);
     if (currGameStatus.length === 9 && isGameOver === false) {
         document.querySelector('.turnInfo').innerText =
-            "It's a draw! Would you want to play again?";
+            "It's a draw! Restart and Continue to the Next Round!";
+        gameOver.play();
     }
 }
 
@@ -154,6 +157,7 @@ function restart() {
         element.innerText = '';
         turn = 'X';
         isGameOver = false;
+        allCells.disabled = false;
         document.getElementsByClassName('turnInfo')[0].innerText =
             'It is turn for ' + turn;
         document.querySelector('.image img').classList.remove('winner');
@@ -200,3 +204,12 @@ document.getElementById('go').addEventListener('click', function () {
         gameOver.play();
     }
 });
+
+/*
+//end game
+function endGame() {
+    document.getElementsByClassName('cell').forEach((cell) => {
+        document.getElementsByClassName('cell').disabled;
+    });
+}
+*/
