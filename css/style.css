@@ -185,11 +185,12 @@ td {
     grid-row-end: 5;
     text-align: center;
     display: grid;
-    background-color: rgba(3, 26, 51, 0.863);
+    background-color: rgba(245, 239, 239, 0.863);
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
     min-width: 460px;
-    border: 1px solid white;
+    border: 5px solid rgb(202, 17, 17);
     justify-content: center;
     align-content: center;
     cursor: pointer;

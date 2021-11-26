@@ -3,9 +3,9 @@ let gameOver = new Audio('gameover.mp3');
 let applause = new Audio('applause.mp3');
 let turn = 'X';
 let isGameOver = false;
-let numWins = [];
 let cellText = document.getElementsByClassName('cellText');
 let allCells = document.getElementsByClassName('cell');
+currGameStatus = [];
 
 //Create function to change the turn
 //turn will return who gets to play next
@@ -43,7 +43,9 @@ let winConditions = [
     */
 //There are no a === b === c function in javascript
 // a===b && c===b && a !== ''
-function checkForWin() {
+function checkForWin(event) {
+    //console.log(currGameStatus);
+    currGameStatus.push(event.target.innerText);
     let scoreX = document.getElementById('scoreX');
     let scoreO = document.getElementById('scoreO');
     winConditions.forEach((element) => {
@@ -54,6 +56,7 @@ function checkForWin() {
         ) {
             document.querySelector('.turnInfo').innerText =
                 cellText[element[0]].innerText + ' Wins the Game!';
+            applause.play();
             if (cellText[element[0]].innerText === 'X') {
                 scoreX.textContent = ++scoreforX;
             } else if (cellText[element[0]].innerText === 'O') {
@@ -74,13 +77,13 @@ Array.from(allCells).forEach((cell) => {
             turn = switchPlayer();
             console.log(turn);
             colorChange(event.target, turn);
+
             clickTurn.play();
-            if (winConditions.length <= 9 && !isGameOver) {
-                console.log('Helloooooooo');
+            if (winConditions.length < 9 && !isGameOver) {
                 document.getElementsByClassName('turnInfo')[0].innerText =
                     'It is turn for ' + turn;
             }
-            checkForWin();
+            checkForWin(event);
             isDraw();
             determineWinner();
         }
@@ -95,9 +98,11 @@ function colorChange(element, symbol) {
     }
 }
 
+/*
 const cells = document.querySelectorAll('.cellText');
 for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener('click', function () {
+        currGameStatus.push();
         if (cells[i].innerText === 'X') {
             cells[i].innerText.setAttribute(
                 'style',
@@ -111,12 +116,15 @@ for (let i = 0; i < cells.length; i++) {
         }
     });
 }
+*/
 
 //Check for draw
 function isDraw() {
-    if (winConditions.length > 9 && isGameOver) {
-        document.getElementsByClassName('turnInfo')[0].innerText ===
-            "It's a draw! Play Again!";
+    console.log(currGameStatus);
+    console.log(currGameStatus.length);
+    if (currGameStatus.length === 9 && isGameOver === false) {
+        document.querySelector('.turnInfo').innerText =
+            "It's a draw! Would you want to play again?";
     }
 }
 
@@ -140,6 +148,7 @@ function determineWinner() {
 
 //make restart function responsive
 function restart() {
+    currGameStatus = [];
     let cellTexts = document.querySelectorAll('.cellText');
     Array.from(cellTexts).forEach((element) => {
         element.innerText = '';
@@ -165,31 +174,29 @@ document.getElementById('playAgain').addEventListener('click', function () {
     playagain();
 });
 
+//Countdown timer
 counterStarted = false;
+let startPoint = 5;
+let time = startPoint * 60;
 
-const countdownEl = document.getElementById('countdown');
-counterStarted = false;
-document.getElementById('go').addEventListener('click', go);
-let seconds = 0,
-    stop = 60,
-    counterStarted = false,
-    counter;
-
+//go function starts countdown
 function go() {
+    const min = Math.floor(time / 60);
+    let sec = time % 60; //% Modulus (Division Remainder)
+    sec = sec < 10 ? '0' + sec : sec;
+    document.getElementById('countdown').innerHTML = `${min}:${sec}`;
+    time--;
+}
+
+//make go button responsive
+document.getElementById('go').addEventListener('click', function () {
     if (counterStarted === false) {
         counterStarted = true;
-        if (counterStarted === false) {
-            counterStarted = true;
-            counter = setInterval(function () {
-                if (seconds <= stop) {
-                    countdownEl.innerHTML = seconds;
-                    seconds++;
-                } else {
-                    clearInterval(counter);
-                    counterStarted = false;
-                    seconds = 0;
-                }
-            }, 1000);
-        }
+        setInterval(go, 1000); //updateCountdown every 1000 seconds
+    } else if (counterStarted === true) {
+        clearInterval(setInterval(go, 1000));
+        counterStarted = false;
+        sec = 0;
+        gameOver.play();
     }
-}
+});
