@@ -12,6 +12,8 @@
         'message message message message message message message message message'
         'score score score main main main sidebar sidebar sidebar';
 }
+
+/*
 @media only screen and (max-width: 520px) {
     .container {
         display: grid;
@@ -26,6 +28,7 @@
             'score score score';
     }
 }
+*/
 
 .item-a {
     grid-area: header;
@@ -59,6 +62,7 @@
 
 h1 {
     text-align: center;
+    font-size: 35px;
 }
 
 #buttons {
@@ -84,9 +88,14 @@ p {
     background-color: rgb(65, 150, 247);
     color: white;
     text-align: center;
-    font-size: 24px;
+    font-size: 26px;
     margin: 3px;
     padding: 5px;
+}
+.turnInfo {
+    justify-items: center;
+    text-align: center;
+    font-size: 35px;
 }
 #score {
     grid-column-start: 1;
