@@ -161,6 +161,9 @@ function determineWinner() {
 
 //make restart function responsive
 function restart() {
+    Array.from(allCells).forEach((cell) => {
+        cell.addEventListener('click', clickHandler);
+    });
     currGameStatus = [];
     let cellTexts = document.querySelectorAll('.cellText');
     isGameOver = false;
