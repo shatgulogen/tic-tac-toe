@@ -45,3 +45,4 @@ Planning
 **4. Things to improve**
 
     - Use media queries for the bottom colums to make it look nice when screen shrinks to certain size.
+    - Add eventlistener to shuffle button.

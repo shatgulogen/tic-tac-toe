@@ -226,8 +226,8 @@ function endGame() {
         cell.removeEventListener('click', clickHandler);
     });
 }
-
-//shuffle shuffle an array of Xs and Os
+/*
+//shuffle an array of Xs and Os
 
 // A function to generate a random permutation of arr
 function shuffle(arr, n) {
@@ -263,3 +263,32 @@ shuffleButton = document.querySelector('.shuffle');
 shuffleButton.addEventListener('click', function () {
     shuffle(arr, n);
 });
+
+*/
+span = document.getElementById('shuffleBtn');
+
+const StringArr = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+const timeArr = [0, 100, 250, 550, 850, 1250, 1650, 2150, 2800];
+
+function shuffle() {
+    for (let i = 0; i < StringArr.length; i++) {
+        setTimeout(function () {
+            span.innerText = StringArr[i];
+        }, timeArr[i]);
+    }
+}
+
+console.log(shuffle());
+if (span.innerText == 'X') {
+    console.log('X');
+    turn = 'X';
+    document.getElementsByClassName('turnInfo')[0].innerText =
+        'It is turn for ' + turn;
+} else if (span.innerText == 'O') {
+    console.log('O');
+    turn = 'O';
+    document.getElementsByClassName('turnInfo')[0].innerText =
+        'It is turn for ' + turn;
+}
+
+//document.getElementsByClassName('.shuffle').addEventListener('click', shuffle);
